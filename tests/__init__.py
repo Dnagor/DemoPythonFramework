@@ -1,5 +1,3 @@
-import os
-
 from dataclasses import dataclass
 
 
@@ -8,7 +6,7 @@ class Property:
     browser: str = "chrome"
     test_path = "tests"
     rerun_count = 1
-    anyParameter = "aaa"
+    qa_url = "https://qaclickacademy.com/practice.php"
 
 
 PROPERTIES = Property()

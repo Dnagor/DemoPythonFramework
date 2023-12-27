@@ -1,3 +1,3 @@
 import pytest
 
-pytest.main("-v")
+pytest.main("-v -m yes")

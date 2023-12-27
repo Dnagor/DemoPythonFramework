@@ -1,19 +1,24 @@
 import pytest
-
-from sdk.pages.worker import Worker
+from selenium import webdriver
+from selenium.webdriver import DesiredCapabilities
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 
 def pytest_runtest_setup(item):
-    print("test session start")
+    print("Test session start")
 
 
 def pytest_runtest_teardown(item):
-    print("test session teardown")
+    print("Test session teardown")
 
-@pytest.fixture(scope='function')
-def configure_worker():
-    worker = Worker("Andriy", 25)
 
-    yield worker
-
-    print(worker.name)
+@pytest.yield_fixture()
+def config_driver(request):
+    caps = DesiredCapabilities().EDGE.copy()
+    caps['acceptInsecureCerts'] = True
+    path = EdgeChromiumDriverManager().install()
+    driver = webdriver.Edge(executable_path=path, capabilities=caps)
+    driver.implicitly_wait(10)
+    request.cls.driver = driver
+    yield
+    driver.close()
