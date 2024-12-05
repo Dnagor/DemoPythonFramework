@@ -4,3 +4,4 @@ edgedriver-autoinstaller==0.2.1
 chromedriver_autoinstaller
 webdriver_manager
 dataclasses
+follow-redirects
